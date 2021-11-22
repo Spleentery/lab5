@@ -1,87 +1,35 @@
-#include <string>
-#include <vector>
 #include <iostream>
 using namespace std;
 
-class pojazd{
-    int numer;
-    string nazwa;
-    int ilosc;
-     std::vector<std::string> miejsce{};
-     string marka;
-     string typ;
+class windows{
+    static string najnowsza_wersja_oprogramowania;
+    string zainstalowana_wersja_oprogramowania = "v1.0";
 public:
-    pojazd(int num, string nazwa_pojazdu,int il, string mark, string ty, string im = "", string nazwisk = "Puste"){
-        numer = num;
-        nazwa = nazwa_pojazdu;
-        ilosc = il;
-        miejsce.push_back(nazwisk);
-        miejsce.push_back(im);
-        marka = mark;
-        typ = ty;
-
+    static string opublikujNoweOprogramowanie(string nowe){
+        return najnowsza_wersja_oprogramowania = (nowe);
     }
-    pojazd(){
-        miejsce.push_back("Puste");
-    }
-    pojazd(pojazd &kopia){
-        numer = kopia.numer;
-        nazwa = kopia.nazwa;
-        ilosc = kopia.ilosc;
-        marka = kopia.marka;
-        typ = kopia.typ;
-    }
-    pojazd(string d){
-        miejsce.push_back(d);
-    }
-    pojazd(string b, string d){
-       miejsce.push_back(b);
-       miejsce.push_back(d);
-
-    }
-    void printImie(){
-        for (int i = 0; i < miejsce.size(); ++i) {
-            cout << miejsce[i] << " " << endl;
-        }
-    }
-    void print(){
-        cout << nazwa << "\t" << ilosc << "\t" << typ << endl;
+    void update(){
+        zainstalowana_wersja_oprogramowania = najnowsza_wersja_oprogramowania;
     }
 
-   void setMiejsce(string n, string i){
-        miejsce.push_back(n);
-        miejsce.push_back(i);
+string getWin() const{
+        return zainstalowana_wersja_oprogramowania;
     }
-    int getNumer(){
-        return numer;
+    void print() const{
+            cout << this->getWin()<< endl;
     }
-    string getNazwa() {
-        return nazwa;
-    }
-    string getMarka(){
-        return marka;
-    }
-    string getType(){
-        return typ;
-    }
-    void setName(string n){
-        nazwa = n;
-    }
-    void setNumer(int n){
-        numer = n;
-    }
-    ~pojazd(){
-         miejsce.clear();
-         cout << "vector cleared\n";
-    }
+
 };
+string windows::najnowsza_wersja_oprogramowania ="v2.0";
 
-int main()
-{
-    pojazd aircraft(124135,"samolot", 3,"Boeing","bezzalogowy", "David","Burchakov");
-    aircraft.printImie();
-      pojazd veicle(124135,"samolot", 3, "Boeing","bezz");
 
-      pojazd pociag(aircraft);
-      pociag.print();
+int main () {
+     windows eleven;
+     eleven.print();
+     eleven.update();
+     eleven.print();
+     eleven.opublikujNoweOprogramowanie("v3.0");
+     eleven.update();
+     eleven.print();
+
 }
